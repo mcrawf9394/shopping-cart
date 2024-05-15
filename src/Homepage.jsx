@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { useState } from "react"
-import { Link } from "react-router-dom"
-import { Item } from "./Item.jsx"
+import { currentCart } from "./Shopping-Cart-Page"
 export default function Homepage () {
     const [items, setItems] = useState(["loading"])
     useEffect(() => {
@@ -16,15 +15,37 @@ export default function Homepage () {
         {items.map((item) =>{
             if (item === "loading") {
                 return <>
-                    <h3>loading</h3>
+                    <h3 className="col-span-4 row-span-5 my-16 text-center text-8xl">Loading...</h3>
                 </>
             }
             else {
-                return <Link to={Item}>
+                return <>
+                    <dialog id={item.title}>
+                        <img src={item.image}/>
+                        <h4>{item.title}</h4>
+                        <h5>{item.price}</h5>
+                        <button onClick={(click) => {
+                            click.preventDefault()
+                            let popUp = document.getElementById(item.title)
+                            popUp.close()
+                        }}>Go Back</button>
+                        <button onClick={(click) => {
+                            click.preventDefault()
+                            let popUp = document.getElementById(item.title)
+                            popUp.close()
+                            currentCart.items.push(item)
+                        }}>Add to Cart</button>
+                    </dialog>
+                <button onClick={(click) => {
+                    click.preventDefault()
+                    let popUp = document.getElementById(item.title)
+                    popUp.showModal()
+                }}>
                     <img src={item.image} alt="photo of product" className="h-40 w-10/12 ml-5"/>
                     <h4>{item.title}</h4>
                     <h5>{item.price}</h5>
-                </Link>
+                </button>
+            </>
             }
         })}
     </div>
