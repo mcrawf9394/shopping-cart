@@ -1,5 +1,7 @@
 import { useEffect } from "react"
 import { useState } from "react"
+import { Link } from "react-router-dom"
+import { Item } from "./Item.jsx"
 export default function Homepage () {
     const [items, setItems] = useState(["loading"])
     useEffect(() => {
@@ -10,7 +12,7 @@ export default function Homepage () {
         }
         itemSource ()
     }, [])
-    return <div className="grid grid-cols-4 grid-rows-5 m-10 gap-4">
+    return <div className="grid grid-cols-4 grid-rows-5 m-5 gap-7">
         {items.map((item) =>{
             if (item === "loading") {
                 return <>
@@ -18,11 +20,11 @@ export default function Homepage () {
                 </>
             }
             else {
-                return <div>
-                    <img src={item.image} alt="photo of product" className="size-20"/>
+                return <Link to={Item}>
+                    <img src={item.image} alt="photo of product" className="h-40 w-10/12 ml-5"/>
                     <h4>{item.title}</h4>
                     <h5>{item.price}</h5>
-                </div>
+                </Link>
             }
         })}
     </div>
