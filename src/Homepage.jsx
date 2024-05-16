@@ -7,6 +7,7 @@ export default function Homepage () {
         const itemSource = async function () {
             let source = await fetch('https://fakestoreapi.com/products')
             let info = await source.json()
+            console.log(info)
             setItems(info)
         }
         itemSource ()
@@ -24,6 +25,7 @@ export default function Homepage () {
                         <img src={item.image}/>
                         <h4>{item.title}</h4>
                         <h5>{item.price}</h5>
+                        <h4>{item.description}</h4>
                         <button onClick={(click) => {
                             click.preventDefault()
                             let popUp = document.getElementById(item.title)
@@ -43,7 +45,7 @@ export default function Homepage () {
                 }}>
                     <img src={item.image} alt="photo of product" className="h-40 w-10/12 ml-5"/>
                     <h4>{item.title}</h4>
-                    <h5>{item.price}</h5>
+                    <h5>${item.price}</h5>
                 </button>
             </>
             }
