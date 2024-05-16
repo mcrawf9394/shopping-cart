@@ -42,7 +42,7 @@ export default function Homepage () {
                     click.preventDefault()
                     let popUp = document.getElementById(item.title)
                     popUp.showModal()
-                }}>
+                }} className="border-solid border-4 border-black bg-emerald-400 hover:scale-110 ease-in-out duration-500 rounded-lg">
                     <img src={item.image} alt="photo of product" className="h-40 w-10/12 ml-5"/>
                     <h4>{item.title}</h4>
                     <h5>${item.price}</h5>

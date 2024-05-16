@@ -5,7 +5,7 @@ import Cart from './Shopping-Cart-Page'
 import github from './images/github-mark.png'
 function App() {
   return ( <div>
-    <nav className='grid grid-cols-4 grid-rows-1 items-center bg-indigo-500 py-5 sticky top-0'>
+    <nav className='grid grid-cols-4 grid-rows-1 items-center bg-indigo-500 py-5 sticky top-0 z-10'>
       <h1 className='text-5xl text-center'>Mock Shop</h1>
       <Link to="/" className='text-2xl hover:text-white text-center'>Home</Link>
       <Link to="store" className='text-2xl hover:text-white text-center'>Store</Link>

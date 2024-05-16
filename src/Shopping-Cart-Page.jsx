@@ -32,7 +32,7 @@ export default function Cart () {
                 </>
             })}
         </div>
-        <h3 className="text-center">Total Before Taxes = ${currentCart.findTotal()}</h3>
+        <h3 className="text-center mb-20">Total Before Taxes = ${currentCart.findTotal()}</h3>
     </>
     }
 }
