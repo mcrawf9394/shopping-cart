@@ -3,11 +3,11 @@ import { useState } from "react"
 import { currentCart } from "./Shopping-Cart-Page"
 export default function Homepage () {
     const [items, setItems] = useState(["loading"])
+    const [quantity, setQuantity] = useState(1)
     useEffect(() => {
         const itemSource = async function () {
             let source = await fetch('https://fakestoreapi.com/products')
             let info = await source.json()
-            console.log(info)
             setItems(info)
         }
         itemSource ()
@@ -38,9 +38,13 @@ export default function Homepage () {
                                 let popUp = document.getElementById(item.title)
                                 popUp.close()
                             }}>Go Back</button>
+                            <label htmlFor="input">Quantity</label>
+                            <input id="input" type="number" min="1" max="10" value={quantity} onChange={(change) => {setQuantity(change.target.value)}} className="border-black border-solid border-2"/>
                             <button onClick={(click) => {
                                 click.preventDefault()
                                 let popUp = document.getElementById(item.title)
+                                item.q = quantity
+                                console.log(item.q)
                                 popUp.close()
                                 currentCart.items.push(item)
                             }}>Add to Cart</button>
