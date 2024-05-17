@@ -1,3 +1,6 @@
+function dollarDisplay (num) {
+    return Number.parseFloat(num).toFixed(2)
+}
 const currentCart = {
     items: [],
     findTotal () {
@@ -8,6 +11,7 @@ const currentCart = {
             total = total + price
             i++
         }
+        total = dollarDisplay(total)
         return total
     },
 }
@@ -21,15 +25,15 @@ export default function Cart () {
     }
     else {
     return <>
-        <div className="grid grid-cols-5 w-12/12">
+        <div className="grid grid-cols-1 grid-rows-1 auto-rows-auto w-11/12 mx-auto gap-2 mt-2">
             {currentCart.items.map((item) => {
-                return <>
+                return <div className="grid grid-cols-5 w-10/12 mx-auto text-center border-solid border-black border-4">
                     <img src={item.image} alt="picture of item" className="size-40"/>
-                    <h4 className="mt-16">{item.title}</h4>
-                    <h4 className="mt-16">{item.price}</h4>
-                    <button>Remove</button>
-                    <button>Add</button>
-                </>
+                    <h4 className="self-center">{item.title}</h4>
+                    <h4 className="self-center">${dollarDisplay(item.price)}</h4>
+                    <button onClick={()=>{}}>Remove</button>
+                    <button onClick={()=>{}}>Add</button>
+                </div>
             })}
         </div>
         <h3 className="text-center mb-20">Total Before Taxes = ${currentCart.findTotal()}</h3>
