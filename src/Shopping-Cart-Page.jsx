@@ -40,7 +40,7 @@ export default function Cart () {
                     let index = currentCart.items.indexOf(item)
                     currentCart.items[index].q = document.getElementById(item.title).value
                     let newArray = currentCart.items.slice(0, currentCart.items.length)
-                   setDisplay(newArray)
+                    setDisplay(newArray)
                 }}>Add</button>
                   <button onClick={(click) => {
                         click.preventDefault()

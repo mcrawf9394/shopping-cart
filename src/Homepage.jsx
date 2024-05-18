@@ -3,6 +3,7 @@ import { useState } from "react"
 import { currentCart } from "./Shopping-Cart-Page"
 export default function Homepage () {
     const [items, setItems] = useState(["loading"])
+    const [cat, setCat] = useState("All")
     const [quantity, setQuantity] = useState(1)
     useEffect(() => {
         const itemSource = async function () {
@@ -15,11 +16,23 @@ export default function Homepage () {
     function dollarDisplay (num) {
         return Number.parseFloat(num).toFixed(2)
     }
-    return <div className="grid grid-cols-4 grid-rows-5 m-5 gap-7">
+    return <>
+    <div className="grid grid-cols-5 grid-rows-1 w-12/12 h-8">
+        <button onClick={() => {setCat("All")}} className="hover:border-b-2 hover:border-black hover:border-solid">All</button>
+        <button onClick={() => {setCat("men's clothing")}} className="hover:border-b-2 hover:border-black hover:border-solid">Men's Clothes</button>
+        <button onClick={() => {setCat("women's clothing")}} className="hover:border-b-2 hover:border-black hover:border-solid">Women's Clothes</button>
+        <button onClick={() => {setCat("jewelery")}} className="hover:border-b-2 hover:border-black hover:border-solid">Jewelery</button>
+        <button onClick={() => {setCat("electronics")}} className="hover:border-b-2 hover:border-black hover:border-solid">Electronics</button>
+    </div>
+    <div className="grid grid-cols-4 grid-rows-5 m-5 gap-7 mb-12">
         {items.map((item) =>{
             if (item === "loading") {
                 return <>
                     <h3 className="col-span-4 row-span-5 my-16 text-center text-8xl">Loading...</h3>
+                </>
+            }
+            if (cat != "All" && item.category != cat) {
+                return <>
                 </>
             }
             else {
@@ -63,4 +76,5 @@ export default function Homepage () {
             }
         })}
     </div>
+    </>
 }
