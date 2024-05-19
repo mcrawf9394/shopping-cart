@@ -21,6 +21,7 @@ const currentCart = {
 }
 export { currentCart }
 import CartItem from "./CartItem"
+import Checkout from "./Checkout"
 export default function Cart () {
     const [display, setDisplay] = useState (currentCart.items)
     if (currentCart.items.length === 0) {
@@ -51,7 +52,17 @@ export default function Cart () {
                 </div>
             })}
         </div>
-        <h3 className="text-center mb-20">Total Before Taxes = ${currentCart.findTotal()}</h3>
+        <h3 className="text-center">Total Before Taxes = ${currentCart.findTotal()}</h3>
+        <form className="mb-20" action="">
+                <label htmlFor="zip">Zip Code</label>
+                <input id="zip" type="number" minLength="5" className="border-black border-2 border-solid"/>
+                <button onClick={(click) => {
+                    click.preventDefault()
+                    let popUp = document.querySelector('dialog')
+                    popUp.showModal()
+                }}>Submit</button>
+        </form>
+        <Checkout />
     </>
     }
 }
